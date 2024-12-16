@@ -16,7 +16,27 @@ public class PlaceRepository {
 
     @PostConstruct
     public void init() {
-        // Añadir aquí datos de ejemplo
+        add(Place.builder()
+                .name("Bar Manolo")
+                .address("Calle de la Esperanza, 18, 41002 Sevilla")
+                .coords("37.382830, -5.973170")
+                .desc("Bar Manolo es un bar de tapas en el centro de Sevilla. Es un lugar muy popular entre los turistas y los locales.")
+                .image("https://lh5.googleusercontent.com/p/AF1QipO1")
+                .build());
+        add(Place.builder()
+                .name("Bar Pepe")
+                .address("Calle de la Esperanza, 20, 41002 Sevilla")
+                .coords("37.382830, -5.973170")
+                .desc("Bar Pepe es un bar de tapas en el centro de Sevilla. Es un lugar muy popular entre los turistas y los locales.")
+                .image("https://lh5.googleusercontent.com/p/AF1QipO1")
+                .build());
+        add(Place.builder()
+                .name("Bar Juan")
+                .address("Calle de la Esperanza, 22, 41002 Sevilla")
+                .coords("37.382830, -5.973170")
+                .desc("Bar Juan es un bar de tapas en el centro de Sevilla. Es un lugar muy popular entre los turistas y los locales.")
+                .image("https://lh5.googleusercontent.com/p/AF1QipO1")
+                .build());
     }
 
     public Place add(Place place) {
@@ -32,6 +52,10 @@ public class PlaceRepository {
 
     public List<Place> getAll() {
         return List.copyOf(places.values());
+    }
+
+    public Optional<Place> findById(Long id) {
+        return Optional.ofNullable(places.get(id));
     }
 
     public Optional<Place> edit(Long id, Place place) {

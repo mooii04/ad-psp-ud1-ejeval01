@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "58eecaf3-9ea3-4217-9b79-86fc854ab6c7",
+		"name": "places",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38617679"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/places/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/place/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"place",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/places/2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/place/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"place",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/place/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4,\r\n    \"name\": \"Bar Eugenio\",\r\n    \"coords\": \"37.382830, -5.973170\",\r\n    \"image\": \"https://lh5.googleusercontent.com/p/AF1QipO1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/place/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"place",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/place/2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"name\": \"Bar Pepe\",\r\n    \"coords\": \"37.382830, -5.973170\",\r\n    \"image\": \"imagen.bar.pepe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/place/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"place",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/place/1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/place/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"place",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
