@@ -75,7 +75,7 @@ public class PlaceRepository {
 
     public Optional<Place> completeEdit(Long id, Place place) {
         return Optional.ofNullable(places.computeIfPresent(id, (k,v) -> {
-            
+
         }));
     }
 
