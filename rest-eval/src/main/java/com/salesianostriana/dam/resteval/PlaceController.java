@@ -1,7 +1,10 @@
 package com.salesianostriana.dam.resteval;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.ResponseExtractor;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,37 +14,43 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PlaceController {
 
-    private final PlaceRepository placeRepository;
+    private final PlaceService placeService;
 
     @GetMapping
-    public List<PlaceDto> getAll(){
-        return placeRepository.getAll().stream().map(PlaceDto::toPlace).toList();
+    public ListGetPlaceDto getAll(){
+        return ListGetPlaceDto.of(placeService.getAll());
     }
 
     @GetMapping("{id}")
-    public PlaceDto getOne(@PathVariable Long id){
-        return PlaceDto.toPlace(placeRepository.findById(id).orElseThrow(() -> new PlacesNotFoundException(id)));
+    public Place getById(@PathVariable Long id){
+        return placeService.getById(id);
     }
 
     @PostMapping
-    public PlaceDto create(@RequestBody Place place){
-        return PlaceDto.toPlace(placeRepository.add(place));
+    public ResponseEntity<Place> create(@RequestBody CreatePlaceDto dto){
+        return ResponseEntity.status(201).body(placeService.create(dto.toPlace()));
     }
 
     @PutMapping("{id}")
-    public PlaceDto edit(@PathVariable Long id, @RequestBody Place place) {
+    public Place edit(
+            @PathVariable Long id,
+            @RequestBody CreatePlaceDto dto
+    ){
+        return placeService.edit(id, dto.toPlace());
+    }
 
-        if (!placeRepository.findById(id).isPresent()) {
-            throw new PlacesNotFoundException(id);
-        }
-
-        return PlaceDto.toPlace(placeRepository.edit(id, place));
-
+    @PutMapping("{id}/tag/add/{tag}")
+    public Place addTag(
+            @PathVariable Long id,
+            @PathVariable String tag
+    ){
+        return placeService.addTagToPlace(id, tag);
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable Long id) {
-        placeRepository.delete(id);
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        placeService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

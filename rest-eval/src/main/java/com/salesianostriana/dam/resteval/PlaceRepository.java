@@ -3,6 +3,7 @@ package com.salesianostriana.dam.resteval;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -19,23 +20,26 @@ public class PlaceRepository {
         add(Place.builder()
                 .name("Bar Manolo")
                 .address("Calle de la Esperanza, 18, 41002 Sevilla")
-                .coords("37.382830, -5.973170")
+                .coords("37.382830,-5.973170")
                 .desc("Bar Manolo es un bar de tapas en el centro de Sevilla. Es un lugar muy popular entre los turistas y los locales.")
                 .image("https://lh5.googleusercontent.com/p/AF1QipO1")
+                .tags(new ArrayList<>(List.of("tapas", "cerveza")))
                 .build());
         add(Place.builder()
                 .name("Bar Pepe")
                 .address("Calle de la Esperanza, 20, 41002 Sevilla")
-                .coords("37.382830, -5.973170")
+                .coords("37.382830,-5.973170")
                 .desc("Bar Pepe es un bar de tapas en el centro de Sevilla. Es un lugar muy popular entre los turistas y los locales.")
                 .image("https://lh5.googleusercontent.com/p/AF1QipO1")
+                .tags(new ArrayList<>(List.of("tapas", "cerveza")))
                 .build());
         add(Place.builder()
                 .name("Bar Juan")
                 .address("Calle de la Esperanza, 22, 41002 Sevilla")
-                .coords("37.382830, -5.973170")
+                .coords("37.382830,-5.973170")
                 .desc("Bar Juan es un bar de tapas en el centro de Sevilla. Es un lugar muy popular entre los turistas y los locales.")
                 .image("https://lh5.googleusercontent.com/p/AF1QipO1")
+                .tags(new ArrayList<>(List.of("tapas", "cerveza")))
                 .build());
     }
 
@@ -66,6 +70,12 @@ public class PlaceRepository {
             v.setCoords(place.getCoords());
             v.setAddress(place.getAddress());
             return v;
+        }));
+    }
+
+    public Optional<Place> completeEdit(Long id, Place place) {
+        return Optional.ofNullable(places.computeIfPresent(id, (k,v) -> {
+            
         }));
     }
 

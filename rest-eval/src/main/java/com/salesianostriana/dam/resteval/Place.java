@@ -34,8 +34,4 @@ public class Place {
         tags.removeIf(t -> t.equalsIgnoreCase(tag));
     }
 
-
-
-
-
 }
